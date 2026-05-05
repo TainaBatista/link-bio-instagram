@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tainá Batista · Enfermeira Esteta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:        #C9973A;
+  --gold-light:  #E8C97A;
+  --gold-pale:   #F5ECD8;
+  --gold-faint:  #FBF6EE;
+  --gold-dark:   #8A6420;
+  --ivory:       #FDFAF5;
+  --cream:       #F7F2EA;
+  --warm-white:  #FFFEF9;
+  --charcoal:    #1C1712;
+  --dark:        #2C241A;
+  --muted:       #7A6E5F;
+  --muted-light: #A89E8F;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Jost', sans-serif;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 48px 24px 36px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND ── */
+.bg-glow {
+  position: fixed;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse at center, rgba(201,151,58,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.bg-ring {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.bg-ring-1 { width: 500px; height: 500px; border: 1px solid rgba(201,151,58,0.07); }
+.bg-ring-2 { width: 750px; height: 750px; border: 1px solid rgba(201,151,58,0.04); }
+.bg-ring-3 { width: 1000px; height: 1000px; border: 1px solid rgba(201,151,58,0.025); }
+
+/* ── CARD ── */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── PROFILE ── */
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 36px;
+  animation: fadeDown 0.7s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+.profile-photo-wrap {
+  position: relative;
+  margin-bottom: 18px;
+}
+.profile-photo-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.profile-photo-ring-2 {
+  position: absolute;
+  inset: -13px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,151,58,0.18);
+  pointer-events: none;
+}
+.profile-photo {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 8px 32px rgba(44,36,26,0.18);
+}
+.profile-photo-fallback {
+  width: 96px; height: 96px; border-radius: 50%;
+  background: var(--gold-pale);
+  display: none; align-items: center; justify-content: center;
+  box-shadow: 0 8px 32px rgba(44,36,26,0.18);
+  position: relative; z-index: 1;
+}
+.profile-photo-fallback svg { width: 40px; height: 40px; color: var(--gold); }
+
+.profile-name {
+  font-family: var(--serif);
+  font-size: 26px; font-weight: 400;
+  color: var(--charcoal);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.profile-role {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.profile-divider {
+  width: 120px; height: 1.5px;
+  background: linear-gradient(to right, transparent, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent);
+  position: relative;
+}
+.profile-divider::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; left: 50%; transform: translateX(-50%);
+  width: 60px; height: 5px;
+  background: radial-gradient(ellipse at center, rgba(201,151,58,0.22) 0%, transparent 75%);
+  filter: blur(2px); border-radius: 50%;
+}
+
+/* ── LINKS ── */
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 22px;
+  background: var(--warm-white);
+  border: 1px solid rgba(201,151,58,0.18);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--dark);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  box-shadow: 0 2px 12px rgba(44,36,26,0.06);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+.link-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,151,58,0.04) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.2s;
+}
+.link-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(201,151,58,0.14);
+  border-color: rgba(201,151,58,0.45);
+  background: var(--ivory);
+}
+.link-btn:hover::before { opacity: 1; }
+.link-btn:active { transform: translateY(-1px); }
+
+.link-btn:nth-child(1) { animation-delay: 0.30s; }
+.link-btn:nth-child(2) { animation-delay: 0.42s; }
+.link-btn:nth-child(3) { animation-delay: 0.54s; }
+.link-btn:nth-child(4) { animation-delay: 0.66s; }
+
+.link-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--gold-faint);
+  border: 1px solid rgba(201,151,58,0.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+  transition: background 0.18s, border-color 0.18s;
+}
+.link-btn:hover .link-icon {
+  background: var(--gold-pale);
+  border-color: rgba(201,151,58,0.35);
+}
+
+.link-text {
+  flex: 1; min-width: 0;
+}
+.link-label {
+  font-family: var(--sans);
+  font-size: 10px; font-weight: 300;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted-light);
+  display: block; margin-bottom: 3px;
+}
+.link-title {
+  font-family: var(--serif);
+  font-size: 18px; font-weight: 400;
+  color: var(--charcoal);
+  line-height: 1.2; display: block;
+}
+
+.link-arrow {
+  font-size: 18px;
+  color: var(--gold);
+  opacity: 0.45;
+  transition: opacity 0.18s, transform 0.18s;
+  flex-shrink: 0;
+}
+.link-btn:hover .link-arrow { opacity: 1; transform: translateX(3px); }
+
+/* ── FOOTER ── */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) 0.78s both;
+}
+.footer-location {
+  display: flex; align-items: center; gap: 8px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 12px; font-weight: 300; letter-spacing: 0.5px;
+  transition: color 0.2s;
+  padding: 8px 18px;
+  border-radius: 50px;
+  border: 1px solid rgba(201,151,58,0.12);
+  background: rgba(253,250,245,0.6);
+}
+.footer-location:hover { color: var(--gold-dark); border-color: rgba(201,151,58,0.3); }
+.footer-location svg { width: 13px; height: 13px; fill: var(--gold); flex-shrink: 0; }
+.footer-sig {
+  font-family: var(--serif);
+  font-size: 12px; font-weight: 300;
+  color: rgba(122,110,95,0.35);
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="bg-ring bg-ring-1"></div>
+<div class="bg-ring bg-ring-2"></div>
+<div class="bg-ring bg-ring-3"></div>
+
+<div class="card">
+
+  <!-- PERFIL -->
+  <div class="profile">
+    <div class="profile-photo-wrap">
+      <div class="profile-photo-ring-2"></div>
+      <div class="profile-photo-ring"></div>
+      <img
+        src="foto-taina.jpg"
+        alt="Tainá Batista"
+        class="profile-photo"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      >
+      <div class="profile-photo-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+    </div>
+    <span class="profile-name">Tainá Batista</span>
+    <span class="profile-role">Enfermeira Esteta · Palmas, TO</span>
+    <div class="profile-divider"></div>
+  </div>
+
+  <!-- LINKS -->
+  <div class="links">
+
+    <a href="https://tainabatista.github.io/lp-lobuloplastia/" class="link-btn" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- Ícone: orelha / lóbulo -->
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- sombra / forma de fundo -->
+          <ellipse cx="12" cy="12" rx="7" ry="9" fill="#E8C97A" opacity="0.35"/>
+          <!-- contorno da orelha -->
+          <path d="M16 9a4 4 0 0 0-8 0c0 3 1.5 4.5 1.5 7A2.5 2.5 0 0 0 12 18.5" stroke="#8A6420" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- canal interno -->
+          <path d="M11 9.5c0-1.1.9-2 2-2s2 .9 2 2c0 1.5-1.5 2-1.5 3.5" stroke="#8A6420" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+          <!-- lóbulo -->
+          <circle cx="12" cy="18.5" r="1.2" fill="#E8C97A" stroke="#8A6420" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="link-text">
+        <span class="link-label">Procedimento</span>
+        <span class="link-title">Lobuloplastia não cirúrgica</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://tainabatista.github.io/lp-furobebe/" class="link-btn" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- Ícone: bebê / criança -->
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- corpo -->
+          <ellipse cx="12" cy="16" rx="5" ry="4" fill="#E8C97A" opacity="0.35"/>
+          <!-- cabeça -->
+          <circle cx="12" cy="7.5" r="3.5" fill="#E8C97A" opacity="0.35"/>
+          <circle cx="12" cy="7.5" r="3.5" stroke="#8A6420" stroke-width="1.4" fill="none"/>
+          <!-- corpo contorno -->
+          <path d="M7 20c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#8A6420" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <!-- bracinho / mãozinha -->
+          <path d="M7.5 14.5 C6 13.5 5.5 12 6.5 11" stroke="#8A6420" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+          <!-- brinco pequeno -->
+          <circle cx="15.5" cy="8" r="0.9" fill="#E8C97A" stroke="#8A6420" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="link-text">
+        <span class="link-label">Procedimento</span>
+        <span class="link-title">Furo humanizado em bebês</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://tainabatista.github.io/lp-furoadulto/" class="link-btn" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- Ícone: piercing / argola -->
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- argola fundo -->
+          <circle cx="12" cy="12" r="6.5" stroke="#E8C97A" stroke-width="3.5" fill="none" opacity="0.5"/>
+          <!-- argola contorno principal -->
+          <path d="M12 5.5 A6.5 6.5 0 1 1 5.5 12" stroke="#8A6420" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <!-- abertura da argola -->
+          <path d="M5.5 12 A6.5 6.5 0 0 1 6.2 9" stroke="#8A6420" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <!-- bola de encaixe -->
+          <circle cx="12" cy="5.5" r="1.5" fill="#E8C97A" stroke="#8A6420" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="link-text">
+        <span class="link-label">Procedimento</span>
+        <span class="link-title">Furo humanizado em adultos</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <a href="https://wa.me/5563992726110" class="link-btn" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <!-- Ícone: mensagem / chat -->
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- balão fundo -->
+          <rect x="3" y="3.5" width="18" height="13" rx="4" fill="#E8C97A" opacity="0.35"/>
+          <!-- balão contorno -->
+          <rect x="3" y="3.5" width="18" height="13" rx="4" stroke="#8A6420" stroke-width="1.4" fill="none"/>
+          <!-- cauda do balão -->
+          <path d="M7 16.5 L5 20.5 L11 17.5" stroke="#8A6420" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- pontinhos de mensagem -->
+          <circle cx="9" cy="10" r="1.1" fill="#8A6420"/>
+          <circle cx="12" cy="10" r="1.1" fill="#8A6420"/>
+          <circle cx="15" cy="10" r="1.1" fill="#8A6420"/>
+        </svg>
+      </div>
+      <div class="link-text">
+        <span class="link-label">Atendimento</span>
+        <span class="link-title">Falar no WhatsApp</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <a href="https://maps.app.goo.gl/VGdVgeKfYPJayMcK9" target="_blank" rel="noopener" class="footer-location">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+      </svg>
+      Quadra 1006 Sul · Palmas, TO
+    </a>
+    <span class="footer-sig">Tainá Batista</span>
+  </div>
+
+</div>
+</body>
+</html>
